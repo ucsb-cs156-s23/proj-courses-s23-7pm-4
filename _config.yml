@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s23/proj-courses-s23-7pm-4
 owner: ucsb-cs156-s23
 repo_name: proj-courses-s23-7pm-4
-pull_requests: []
+pull_requests: [{"author":{"id":"MDQ6VXNlcjgxNjQ5MjU3","is_bot":false,"login":"BrennaScholte","name":"Brenna Scholte"},"headRefName":"BrennaKaiwen-changeColor","number":17,"title":"bs - changed navbar color to ucsb blue","url":"https://github.com/ucsb-cs156-s23/proj-courses-s23-7pm-4/pull/17"}]

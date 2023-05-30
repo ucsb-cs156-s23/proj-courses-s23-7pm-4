@@ -25,7 +25,7 @@ const BasicCourseSearchForm = ({ fetchJSON }) => {
   const localSubject = localStorage.getItem("BasicSearch.Subject");
   const localQuarter = localStorage.getItem("BasicSearch.Quarter");
   const localLevel = localStorage.getItem("BasicSearch.CourseLevel");
-  const localCourseNumber = localStorage.getItem("CourseOverTimeSearch.CourseNumber");
+  const localCourseNumber = localStorage.getItem("BasicSearch.CourseNumber");
 
   const { data: subjects, error: _error, status: _status } =
   useBackend(
@@ -93,7 +93,7 @@ const BasicCourseSearchForm = ({ fetchJSON }) => {
             />
           </Col>
         </Row>
-        <Form.Group controlId="CourseOverTimeSearch.CourseNumber">
+        <Form.Group controlId="BasicSearch.CourseNumber">
             <Form.Label>Course Number (Try searching '16' or '130A')</Form.Label>
             <Form.Control onChange={handleCourseNumberOnChange} defaultValue={courseNumber} />
         </Form.Group>

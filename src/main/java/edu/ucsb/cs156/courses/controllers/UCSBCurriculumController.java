@@ -31,11 +31,31 @@ public class UCSBCurriculumController {
     UCSBCurriculumService ucsbCurriculumService;
 
     @GetMapping(value = "/basicsearch", produces = "application/json")
-    public ResponseEntity<String> basicsearch(@RequestParam String qtr, @RequestParam String dept,
-            @RequestParam String level) throws JsonProcessingException {
+    public ResponseEntity<String> basicsearch(
+        @RequestParam String qtr, 
+        @RequestParam String dept,
+        @RequestParam String level,
+        @RequestParam String courseNumber
+        ) throws JsonProcessingException {
 
-        String body = ucsbCurriculumService.getJSON(dept, qtr, level);
+        String body = ucsbCurriculumService.getJSON(dept, qtr, level, makeFormattedCourseId(dept, courseNumber));
         
         return ResponseEntity.ok().body(body);
     }      
+
+    String makeFormattedCourseId(String dept, String courseNumber) {
+        String[] nums = courseNumber.split("[a-zA-Z]+");
+        String[] suffs = courseNumber.split("[0-9]+");
+        if (suffs.length < 2) { // no suffix
+            return
+                  String.format( "%-8s", dept                ) // 'CMPSC   '
+                + String.format( "%3s" , nums[0]                    ) // '  8'
+            ;
+        }
+        return
+              String.format( "%-8s", dept                ) // 'CMPSC   '
+            + String.format( "%3s" , nums[0]                    ) // '  8'
+            + String.format( "%-2s", suffs[1]                   ) // 'A '
+        ;
+    }
 }

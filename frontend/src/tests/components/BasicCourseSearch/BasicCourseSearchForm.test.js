@@ -124,6 +124,8 @@ describe("BasicCourseSearchForm tests", () => {
       quarter: "20211",
       subject: "ANTH",
       level: "G",
+      courseNumber:"5",
+      courseSuf:""
     };
 
     const expectedKey = "BasicSearch.Subject-option-ANTH";

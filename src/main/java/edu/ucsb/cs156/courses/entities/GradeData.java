@@ -15,14 +15,27 @@ import lombok.Builder;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "grade_data")
+@Entity(name = "gradedata")
+@Table(uniqueConstraints = { @uniqueConstraint(name = "UniqueGradeData", columnNames = { "yyyyq", "course", "instructor", "grade"})})
 public class GradeData {
     @Id
-    private String quarter;
-    private String level;
-    private String department;
-    private String courseNumber;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String yyyyq;
+    private String course;
+    private String course;
     private String professor;
     private String grade;
-    private String numStudents;
+    private String count;
+
+    public String getSubjectArea() {
+        if (course==null)
+            return null;
+        return course.substring(0, 8).trim();
+    }
+    public String getCourseNum() {
+        if (course==null)
+            return null;
+        return course.substring(8).trim();
+    }
 }

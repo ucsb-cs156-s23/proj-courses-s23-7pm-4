@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s23/proj-courses-s23-7pm-4
 owner: ucsb-cs156-s23
 repo_name: proj-courses-s23-7pm-4
-pull_requests: [{"author":{"id":"MDQ6VXNlcjc4NTg0NzYz","is_bot":false,"login":"kkwen123","name":"Kaiwen Tang"},"headRefName":"KaiwenBrennaNavCourse","number":21,"title":"KT - edited navbar and test files to combine course history and description","url":"https://github.com/ucsb-cs156-s23/proj-courses-s23-7pm-4/pull/21"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjg2NzAyODU5","is_bot":false,"login":"Joshuason55","name":"Joshua Son"},"headRefName":"JoshEthan-searchInstructor","number":22,"title":"js-added professor to navbar","url":"https://github.com/ucsb-cs156-s23/proj-courses-s23-7pm-4/pull/22"},{"author":{"id":"MDQ6VXNlcjc4NTg0NzYz","is_bot":false,"login":"kkwen123","name":"Kaiwen Tang"},"headRefName":"KaiwenBrennaNavCourse","number":21,"title":"KT - edited navbar and test files to combine course history and description","url":"https://github.com/ucsb-cs156-s23/proj-courses-s23-7pm-4/pull/21"}]

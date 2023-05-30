@@ -25,6 +25,7 @@ const BasicCourseSearchForm = ({ fetchJSON }) => {
   const localSubject = localStorage.getItem("BasicSearch.Subject");
   const localQuarter = localStorage.getItem("BasicSearch.Quarter");
   const localLevel = localStorage.getItem("BasicSearch.CourseLevel");
+  const localCourseNumber = localStorage.getItem("CourseOverTimeSearch.CourseNumber");
 
   const { data: subjects, error: _error, status: _status } =
   useBackend(
@@ -37,10 +38,29 @@ const BasicCourseSearchForm = ({ fetchJSON }) => {
   const [quarter, setQuarter] = useState(localQuarter || quarters[0].yyyyq);
   const [subject, setSubject] = useState(localSubject || {});
   const [level, setLevel] = useState(localLevel || "U");
+  const [courseNumber, setCourseNumber] = useState(localCourseNumber || "");
+  const [courseSuf, setCourseSuf] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetchJSON(event, { quarter, subject, level });
+    fetchJSON(event, { quarter, subject, level, courseNumber, courseSuf });
+  };
+
+  const handleCourseNumberOnChange = (event) => {
+    const rawCourse = event.target.value;
+    if (rawCourse.match(/\d+/g) != null) {
+        const number = rawCourse.match(/\d+/g)[0];
+        setCourseNumber(number);
+    } else {
+        setCourseNumber("");
+    }
+    
+    if (rawCourse.match(/[a-zA-Z]+/g) != null) {
+        const suffix = rawCourse.match(/[a-zA-Z]+/g)[0];
+        setCourseSuf(suffix);
+    } else {
+        setCourseSuf("");
+    }
   };
 
   // Stryker disable all : Stryker is testing by changing the padding to 0. But this is simply a visual optimization as it makes it look better
@@ -73,6 +93,10 @@ const BasicCourseSearchForm = ({ fetchJSON }) => {
             />
           </Col>
         </Row>
+        <Form.Group controlId="CourseOverTimeSearch.CourseNumber">
+            <Form.Label>Course Number (Try searching '16' or '130A')</Form.Label>
+            <Form.Control onChange={handleCourseNumberOnChange} defaultValue={courseNumber} />
+        </Form.Group>
         <Row style={{ paddingTop: 10, paddingBottom: 10 }}>
           <Col md="auto">
             <Button variant="primary" type="submit">

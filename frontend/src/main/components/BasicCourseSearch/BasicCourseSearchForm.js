@@ -93,6 +93,10 @@ const BasicCourseSearchForm = ({ fetchJSON }) => {
             />
           </Col>
         </Row>
+        <Form.Group controlId="CourseOverTimeSearch.CourseNumber">
+            <Form.Label>Course Number (Try searching '16' or '130A')</Form.Label>
+            <Form.Control onChange={handleCourseNumberOnChange} defaultValue={courseNumber} />
+        </Form.Group>
         <Row style={{ paddingTop: 10, paddingBottom: 10 }}>
           <Col md="auto">
             <Button variant="primary" type="submit">

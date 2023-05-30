@@ -9,7 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface JobsRepository extends CrudRepository<Job, Long> {
+public interface GradeDataRepository extends CrudRepository<GradeData, Long> {
     public List<GradeData> findByYyyyqAndCourseAndProfessorAndGrade(String yyyyq, String course, String professor, String grade);
     public List<GradeData> findByCourse(String course);
 }

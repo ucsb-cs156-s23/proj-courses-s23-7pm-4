@@ -3,6 +3,8 @@ package edu.ucsb.cs156.courses.entities;
 import javax.persistence.Entity;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.persistence.GeneratedValue;
 
 import lombok.Builder;
@@ -16,13 +18,12 @@ import lombok.Builder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "gradedata")
-@Table(uniqueConstraints = { @uniqueConstraint(name = "UniqueGradeData", columnNames = { "yyyyq", "course", "instructor", "grade"})})
+@Table(uniqueConstraints = { @UniqueConstraint(name = "UniqueGradeData", columnNames = { "yyyyq", "course", "instructor", "grade"})})
 public class GradeData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String yyyyq;
-    private String course;
     private String course;
     private String professor;
     private String grade;

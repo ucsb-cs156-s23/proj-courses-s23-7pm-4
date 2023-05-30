@@ -14,6 +14,7 @@ export default function CourseDescriptionIndexPage() {
       qtr: query.quarter,
       dept: query.subject,
       level: query.level,
+      courseNumber: query.courseNumber + query.courseSuf // added
     },
   });
 

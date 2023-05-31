@@ -138,8 +138,8 @@ describe("BasicCourseSearchForm tests", () => {
     userEvent.selectOptions(selectSubject, "ANTH");
     const selectLevel = screen.getByLabelText("Course Level");
     userEvent.selectOptions(selectLevel, "G");
-    const selectCourseNum = screen.getByLabelText("Course Number");
-    userEvent.selectOptions(selectCourseNum, "5");
+    const selectCourseNum = screen.getByLabelText("Course Number (Try searching '16' or '130A')");
+    userEvent.type(selectCourseNum, "5");
     const submitButton = screen.getByText("Submit");
     userEvent.click(submitButton);
 
@@ -180,8 +180,8 @@ describe("BasicCourseSearchForm tests", () => {
     userEvent.selectOptions(selectSubject, "MATH");
     const selectLevel = screen.getByLabelText("Course Level");
     userEvent.selectOptions(selectLevel, "G");
-    const selectCourseNum = screen.getByLabelText("Course Number");
-    userEvent.selectOptions(selectCourseNum, "");
+    const selectCourseNum = screen.getByLabelText("Course Number (Try searching '16' or '130A')");
+    userEvent.type(selectCourseNum, "");
     const submitButton = screen.getByText("Submit");
     userEvent.click(submitButton);
   });

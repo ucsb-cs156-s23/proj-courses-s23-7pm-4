@@ -80,6 +80,8 @@ public class UCSBCurriculumService {
 
     public String getJSON(String subjectArea, String quarter, String courseLevel, String courseNumber) {
 
+        String courseId = makeFormattedCourseId(subjectArea, courseNumber);
+
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -89,14 +91,14 @@ public class UCSBCurriculumService {
         HttpEntity<String> entity = new HttpEntity<>("body", headers);
 
         String params = String.format(
-                "?quarter=%s&subjectCode=%s&objLevelCode=%s&courseNumber=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s", quarter,
-                subjectArea, courseLevel, courseNumber, 1, 100, "true");
+                "?quarter=%s&subjectCode=%s&objLevelCode=%s&courseId=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s", quarter,
+                subjectArea, courseLevel, courseId, 1, 100, "true");
         String url = CURRICULUM_ENDPOINT + params;
 
         if (courseLevel.equals("A")) {
             params = String.format(
-                    "?quarter=%s&subjectCode=%s&courseNumber=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
-                    quarter, subjectArea, courseNumber, 1, 100, "true");
+                    "?quarter=%s&subjectCode=%s&courseId=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
+                    quarter, subjectArea, courseId, 1, 100, "true");
             url = CURRICULUM_ENDPOINT + params;
         }
 

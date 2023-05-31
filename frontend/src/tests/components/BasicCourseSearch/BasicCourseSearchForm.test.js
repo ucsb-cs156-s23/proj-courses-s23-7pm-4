@@ -180,6 +180,8 @@ describe("BasicCourseSearchForm tests", () => {
     userEvent.selectOptions(selectSubject, "MATH");
     const selectLevel = screen.getByLabelText("Course Level");
     userEvent.selectOptions(selectLevel, "G");
+    const selectCourseNum = screen.getByLabelText("Course Number");
+    userEvent.selectOptions(selectCourseNum, "");
     const submitButton = screen.getByText("Submit");
     userEvent.click(submitButton);
   });

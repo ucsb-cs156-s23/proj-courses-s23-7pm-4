@@ -81,6 +81,9 @@ describe("CourseDescriptionIndexPage tests", () => {
     const selectLevel = screen.getByLabelText("Course Level");
     userEvent.selectOptions(selectLevel, "G");
 
+    const selectCourseNum = screen.getByLabelText("Course Number");
+    userEvent.selectOptions(selectCourseNum, "5");
+
     const submitButton = screen.getByText("Submit");
     expect(submitButton).toBeInTheDocument();
     userEvent.click(submitButton);
@@ -95,6 +98,7 @@ describe("CourseDescriptionIndexPage tests", () => {
       qtr: "20211",
       dept: "ANTH",
       level: "G",
+      courseNum: "5"
     });
 
     expect(screen.getByText("CMPSC")).toBeInTheDocument();

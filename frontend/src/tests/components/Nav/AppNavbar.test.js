@@ -206,8 +206,8 @@ describe("AppNavbar tests", () => {
             </QueryClientProvider>
         );
 
-        expect(await screen.findByTestId("appnavbar-course-descriptions-dropdown")).toBeInTheDocument();
-        const dropdown = screen.getByTestId("appnavbar-course-descriptions-dropdown");
+        expect(await screen.findByTestId("appnavbar-course-search-dropdown")).toBeInTheDocument();
+        const dropdown = screen.getByTestId("appnavbar-course-search-dropdown");
         const aElement = dropdown.querySelector("a");
         expect(aElement).toBeInTheDocument();
         aElement?.click();
@@ -229,8 +229,8 @@ describe("AppNavbar tests", () => {
             </QueryClientProvider>
         );
 
-        expect(await screen.findByTestId("appnavbar-course-over-time-dropdown")).toBeInTheDocument();
-        const dropdown = screen.getByTestId("appnavbar-course-over-time-dropdown");
+        expect(await screen.findByTestId("appnavbar-course-search-dropdown")).toBeInTheDocument();
+        const dropdown = screen.getByTestId("appnavbar-course-search-dropdown");
         const aElement = dropdown.querySelector("a");
         expect(aElement).toBeInTheDocument();
         aElement?.click();

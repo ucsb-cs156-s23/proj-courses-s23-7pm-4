@@ -13,12 +13,22 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 
+/**
+ * GradeHistory - Entity for grade history data.  Each object represents one
+ * row from the CSV files located in this repository:
+ * <a href="https://github.com/rtora/UCSB_Grades">https://github.com/rtora/UCSB_Grades</a>
+ * 
+ * There is a unique constraint on the combination of year, 
+ * quarter, subjectArea, course, instructor, and grade, since we do not want
+ * duplicate rows of data for the same course.
+ */
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "gradedata")
-@Table(uniqueConstraints = { @UniqueConstraint(name = "UniqueGradeData", columnNames = { "yyyyq", "course", "instructor", "grade"})})
+@Table(uniqueConstraints = { @UniqueConstraint(name = "UniqueGradeData", columnNames = { "yyyyq", "course","professor","grade" }) })
 public class GradeData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +37,7 @@ public class GradeData {
     private String course;
     private String professor;
     private String grade;
-    private String count;
+    private int count;
 
     public String getSubjectArea() {
         if (course==null)

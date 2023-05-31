@@ -62,7 +62,23 @@ public class UCSBCurriculumService {
 
     public static final String ALL_SECTIONS_ENDPOINT = "https://api.ucsb.edu/academics/curriculums/v3/classes/{quarter}/{enrollcode}";
 
-    public String getJSON(String subjectArea, String quarter, String courseLevel) {
+    public String makeFormattedCourseId(String subjectArea, String courseNumber) {
+        String[] nums = courseNumber.split("[a-zA-Z]+");
+        String[] suffs = courseNumber.split("[0-9]+");
+        if (suffs.length < 2) { // no suffix
+            return
+                  String.format( "%-8s", subjectArea                ) // 'CMPSC   '
+                + String.format( "%3s" , nums[0]                    ) // '  8'
+            ;
+        }
+        return
+              String.format( "%-8s", subjectArea                ) // 'CMPSC   '
+            + String.format( "%3s" , nums[0]                    ) // '  8'
+            + String.format( "%-2s", suffs[1]                   ) // 'A '
+        ;
+    }
+
+    public String getJSON(String subjectArea, String quarter, String courseLevel, String courseNumber) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -73,14 +89,14 @@ public class UCSBCurriculumService {
         HttpEntity<String> entity = new HttpEntity<>("body", headers);
 
         String params = String.format(
-                "?quarter=%s&subjectCode=%s&objLevelCode=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s", quarter,
-                subjectArea, courseLevel, 1, 100, "true");
+                "?quarter=%s&subjectCode=%s&objLevelCode=%s&courseNumber=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s", quarter,
+                subjectArea, courseLevel, courseNumber, 1, 100, "true");
         String url = CURRICULUM_ENDPOINT + params;
 
         if (courseLevel.equals("A")) {
             params = String.format(
-                    "?quarter=%s&subjectCode=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
-                    quarter, subjectArea, 1, 100, "true");
+                    "?quarter=%s&subjectCode=%s&courseNumber=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
+                    quarter, subjectArea, courseNumber, 1, 100, "true");
             url = CURRICULUM_ENDPOINT + params;
         }
 
@@ -101,17 +117,17 @@ public class UCSBCurriculumService {
         return retVal;
     }
 
-    public List<ConvertedSection> getConvertedSections(String subjectArea, String quarter, String courseLevel)
+    public List<ConvertedSection> getConvertedSections(String subjectArea, String quarter, String courseLevel, String courseNumber)
             throws JsonProcessingException {
-        String json = getJSON(subjectArea, quarter, courseLevel);
+        String json = getJSON(subjectArea, quarter, courseLevel, courseNumber);
         CoursePage coursePage = objectMapper.readValue(json, CoursePage.class);
         List<ConvertedSection> result = coursePage.convertedSections();       
         return result;
     }
 
-    public String getSectionJSON(String subjectArea, String quarter, String courseLevel)
+    public String getSectionJSON(String subjectArea, String quarter, String courseLevel, String courseNumber)
         throws JsonProcessingException {
-        List<ConvertedSection> l = getConvertedSections(subjectArea, quarter, courseLevel);
+        List<ConvertedSection> l = getConvertedSections(subjectArea, quarter, courseLevel, courseNumber);
         
         String arrayToJson = objectMapper.writeValueAsString(l);
     

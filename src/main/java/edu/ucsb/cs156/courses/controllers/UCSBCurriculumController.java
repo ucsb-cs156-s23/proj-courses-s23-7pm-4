@@ -38,24 +38,8 @@ public class UCSBCurriculumController {
         @RequestParam String courseNumber
         ) throws JsonProcessingException {
 
-        String body = ucsbCurriculumService.getJSON(dept, qtr, level, makeFormattedCourseId(dept, courseNumber));
+        String body = ucsbCurriculumService.getJSON(dept, qtr, level, courseNumber);
         
         return ResponseEntity.ok().body(body);
     }      
-
-    String makeFormattedCourseId(String dept, String courseNumber) {
-        String[] nums = courseNumber.split("[a-zA-Z]+");
-        String[] suffs = courseNumber.split("[0-9]+");
-        if (suffs.length < 2) { // no suffix
-            return
-                  String.format( "%-8s", dept                ) // 'CMPSC   '
-                + String.format( "%3s" , nums[0]                    ) // '  8'
-            ;
-        }
-        return
-              String.format( "%-8s", dept                ) // 'CMPSC   '
-            + String.format( "%3s" , nums[0]                    ) // '  8'
-            + String.format( "%-2s", suffs[1]                   ) // 'A '
-        ;
-    }
 }

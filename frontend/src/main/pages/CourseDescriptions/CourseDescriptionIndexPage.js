@@ -36,7 +36,7 @@ export default function CourseDescriptionIndexPage() {
   return (
     <BasicLayout>
       <div className="pt-2">
-        <h5>Welcome to the UCSB Courses Description Search!</h5>
+        <h5>Welcome to the UCSB Course Description Search!</h5>
         <BasicCourseSearchForm fetchJSON={fetchBasicCourseJSON} />
         <BasicCourseTable courses={courseJSON} />
       </div>

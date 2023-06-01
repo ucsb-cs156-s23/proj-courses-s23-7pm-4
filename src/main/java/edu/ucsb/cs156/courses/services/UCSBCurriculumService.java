@@ -90,16 +90,34 @@ public class UCSBCurriculumService {
 
         HttpEntity<String> entity = new HttpEntity<>("body", headers);
 
-        String params = String.format(
+        String url = null;
+
+        // if (courseId.equals("")){
+        if (courseNumber.equals("")){
+            String params = String.format(
+                "?quarter=%s&subjectCode=%s&objLevelCode=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s", quarter,
+                subjectArea, courseLevel, 1, 100, "true");
+            url = CURRICULUM_ENDPOINT + params;
+
+            if (courseLevel.equals("A")) {
+                params = String.format(
+                        "?quarter=%s&subjectCode=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
+                        quarter, subjectArea, 1, 100, "true");
+                url = CURRICULUM_ENDPOINT + params;
+            }
+        }
+
+        else{
+            String params = String.format(
                 "?quarter=%s&subjectCode=%s&objLevelCode=%s&courseId=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s", quarter,
                 subjectArea, courseLevel, courseId, 1, 100, "true");
-        String url = CURRICULUM_ENDPOINT + params;
-
-        if (courseLevel.equals("A")) {
-            params = String.format(
-                    "?quarter=%s&subjectCode=%s&courseId=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
-                    quarter, subjectArea, courseId, 1, 100, "true");
             url = CURRICULUM_ENDPOINT + params;
+            if (courseLevel.equals("A")) {
+                params = String.format(
+                        "?quarter=%s&subjectCode=%s&courseId=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
+                        quarter, subjectArea, courseId, 1, 100, "true");
+                url = CURRICULUM_ENDPOINT + params;
+        }
         }
 
         log.info("url=" + url);

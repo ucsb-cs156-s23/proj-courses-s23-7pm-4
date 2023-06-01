@@ -102,6 +102,45 @@ describe("BasicCourseSearchForm tests", () => {
     expect(selectLevel.value).toBe("G");
   });
 
+  test("when I select a course number without suffix, the state for course number changes", () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <BasicCourseSearchForm />
+        </MemoryRouter>
+      </QueryClientProvider>
+    );
+    const selectCourseNumber = screen.getByLabelText("Course Number (Try searching '16' or '130A')");
+    userEvent.type(selectCourseNumber, "24");
+    expect(selectCourseNumber.value).toBe("24");
+  });
+
+  test("when I select a course number with suffix, the state for course number changes", () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <BasicCourseSearchForm />
+        </MemoryRouter>
+      </QueryClientProvider>
+    );
+    const selectCourseNumber = screen.getByLabelText("Course Number (Try searching '16' or '130A')");
+    userEvent.type(selectCourseNumber, "130A");
+    expect(selectCourseNumber.value).toBe("130A");
+  });
+
+  test("when I select a course number without number, the state for course number changes", () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <BasicCourseSearchForm />
+        </MemoryRouter>
+      </QueryClientProvider>
+    );
+    const selectCourseNumber = screen.getByLabelText("Course Number (Try searching '16' or '130A')");
+    userEvent.type(selectCourseNumber, "A");
+    expect(selectCourseNumber.value).toBe("A");
+  });
+
   test("when I click submit, the right stuff happens", async () => {
     axiosMock.onGet("/api/UCSBSubjects/all").reply(200, allTheSubjects);
     const sampleReturnValue = {

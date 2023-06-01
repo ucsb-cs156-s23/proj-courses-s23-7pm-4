@@ -84,9 +84,7 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
               </NavDropdown>
             </Nav>
             <Nav className="mr-auto">
-              <NavDropdown title="Professor" id="appnavbar-professor-dropdown" data-testid="appnavbar-professor-dropdown" >
-                <NavDropdown.Item href="/professor/search" data-testid="appnavbar-professor-search">Search</NavDropdown.Item>
-              </NavDropdown>
+              <Nav.Link href="/courseinstructor/search">Search By Instructor</Nav.Link>
             </Nav>
 
 

@@ -237,8 +237,8 @@ describe("AppNavbar tests", () => {
 
         expect(await screen.findByTestId("appnavbar-course-over-time-search")).toBeInTheDocument();
     });
-    test("renders the Instructor menu correctly", async () => {
-        const currentUser = currentUserFixtures.userOnly;
+    test("renders Search course instructor correctly", async () => {
+        const currentUser = currentUserFixtures.adminUser;
         const systemInfo = systemInfoFixtures.showingBoth;
 
         const doLogin = jest.fn();
@@ -250,13 +250,6 @@ describe("AppNavbar tests", () => {
                 </MemoryRouter>
             </QueryClientProvider>
         );
-
-        expect(await screen.findByTestId("appnavbar-instructor-dropdown")).toBeInTheDocument();
-        const dropdown = screen.getByTestId("appnavbar-instructor-dropdown");
-        const aElement = dropdown.querySelector("a");
-        expect(aElement).toBeInTheDocument();
-        aElement?.click();
-
-        expect(await screen.findByTestId("appnavbar-instructor-search")).toBeInTheDocument();
+        expect(screen.getByText("Search By Instructor")).toBeInTheDocument();        
     });
 });

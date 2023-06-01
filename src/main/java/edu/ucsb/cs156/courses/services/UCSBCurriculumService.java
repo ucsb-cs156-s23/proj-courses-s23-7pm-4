@@ -92,7 +92,6 @@ public class UCSBCurriculumService {
 
         String url = null;
 
-        // if (courseId.equals("")){
         if (courseNumber.equals("")){
             String params = String.format(
                 "?quarter=%s&subjectCode=%s&objLevelCode=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s", quarter,
@@ -117,7 +116,7 @@ public class UCSBCurriculumService {
                         "?quarter=%s&subjectCode=%s&courseId=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
                         quarter, subjectArea, courseId, 1, 100, "true");
                 url = CURRICULUM_ENDPOINT + params;
-        }
+            }
         }
 
         log.info("url=" + url);

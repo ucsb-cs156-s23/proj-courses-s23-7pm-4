@@ -4,7 +4,6 @@ import OurTable from "main/components/OurTable";
 import { yyyyqToQyy } from "main/utils/quarterUtilities.js";
 
 export default function BasicCourseTable({ courses }) {
-    console.log(courses);
     const columns = [
         {
             Header: 'Quarter',

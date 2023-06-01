@@ -40,14 +40,14 @@ public class UCSBCurriculumControllerTests {
 
     @MockBean
     private UCSBCurriculumService ucsbCurriculumService;
-
+    
     @Test
     public void test_search() throws Exception {
 
-        String expectedResult = "{expectedJSONResult}";
-        String urlTemplate = "/api/public/basicsearch?qtr=%s&dept=%s&level=%s";
-        String url = String.format(urlTemplate, "20204", "CMPSC", "L");
-        when(ucsbCurriculumService.getJSON(any(String.class), any(String.class), any(String.class)))
+        String expectedResult = "{expectedJSONCourseDescriptionResult}";
+        String urlTemplate = "/api/public/basicsearch?qtr=%s&dept=%s&level=%s&courseNumber=%s";
+        String url = String.format(urlTemplate, "20204", "CMPSC", "L", "16");
+        when(ucsbCurriculumService.getJSONCourseDescription(any(String.class), any(String.class), any(String.class), any(String.class)))
                 .thenReturn(expectedResult);
 
         MvcResult response = mockMvc.perform(get(url).contentType("application/json")).andExpect(status().isOk())

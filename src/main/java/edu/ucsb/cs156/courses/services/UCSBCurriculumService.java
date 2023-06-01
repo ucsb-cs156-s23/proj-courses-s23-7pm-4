@@ -78,7 +78,7 @@ public class UCSBCurriculumService {
         ;
     }
 
-    public String getJSON(String subjectArea, String quarter, String courseLevel, String courseNumber) {
+    public String getJSONCourseDescription(String subjectArea, String quarter, String courseLevel, String courseNumber) {
 
         String courseId = makeFormattedCourseId(subjectArea, courseNumber);
 
@@ -136,17 +136,58 @@ public class UCSBCurriculumService {
         return retVal;
     }
 
-    public List<ConvertedSection> getConvertedSections(String subjectArea, String quarter, String courseLevel, String courseNumber)
+    public String getJSON(String subjectArea, String quarter, String courseLevel) {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("ucsb-api-version", "1.0");
+        headers.set("ucsb-api-key", this.apiKey);
+
+        HttpEntity<String> entity = new HttpEntity<>("body", headers);
+
+        String url = null;
+
+        String params = String.format(
+            "?quarter=%s&subjectCode=%s&objLevelCode=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s", quarter,
+            subjectArea, courseLevel, 1, 100, "true");
+        url = CURRICULUM_ENDPOINT + params;
+
+        if (courseLevel.equals("A")) {
+            params = String.format(
+                    "?quarter=%s&subjectCode=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
+                    quarter, subjectArea, 1, 100, "true");
+            url = CURRICULUM_ENDPOINT + params;
+        }
+
+        log.info("url=" + url);
+
+        String retVal = "";
+        MediaType contentType = null;
+        HttpStatus statusCode = null;
+        try {
+            ResponseEntity<String> re = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+            contentType = re.getHeaders().getContentType();
+            statusCode = re.getStatusCode();
+            retVal = re.getBody();
+        } catch (HttpClientErrorException e) {
+            retVal = "{\"error\": \"401: Unauthorized\"}";
+        }
+        log.info("json: {} contentType: {} statusCode: {}", retVal, contentType, statusCode);
+        return retVal;
+    }
+
+    public List<ConvertedSection> getConvertedSections(String subjectArea, String quarter, String courseLevel)
             throws JsonProcessingException {
-        String json = getJSON(subjectArea, quarter, courseLevel, courseNumber);
+        String json = getJSON(subjectArea, quarter, courseLevel);
         CoursePage coursePage = objectMapper.readValue(json, CoursePage.class);
         List<ConvertedSection> result = coursePage.convertedSections();       
         return result;
     }
 
-    public String getSectionJSON(String subjectArea, String quarter, String courseLevel, String courseNumber)
+    public String getSectionJSON(String subjectArea, String quarter, String courseLevel)
         throws JsonProcessingException {
-        List<ConvertedSection> l = getConvertedSections(subjectArea, quarter, courseLevel, courseNumber);
+        List<ConvertedSection> l = getConvertedSections(subjectArea, quarter, courseLevel);
         
         String arrayToJson = objectMapper.writeValueAsString(l);
     

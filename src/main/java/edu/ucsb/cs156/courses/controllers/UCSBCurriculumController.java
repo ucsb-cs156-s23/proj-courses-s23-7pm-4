@@ -38,7 +38,7 @@ public class UCSBCurriculumController {
         @RequestParam String courseNumber
         ) throws JsonProcessingException {
 
-        String body = ucsbCurriculumService.getJSON(dept, qtr, level, courseNumber);
+        String body = ucsbCurriculumService.getJSONCourseDescription(dept, qtr, level, courseNumber);
         
         return ResponseEntity.ok().body(body);
     }      

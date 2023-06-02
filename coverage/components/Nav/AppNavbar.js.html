@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>18/18</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
@@ -171,40 +171,14 @@
 <a name='L106'></a><a href='#L106'>106</a>
 <a name='L107'></a><a href='#L107'>107</a>
 <a name='L108'></a><a href='#L108'>108</a>
-<a name='L109'></a><a href='#L109'>109</a>
-<a name='L110'></a><a href='#L110'>110</a>
-<a name='L111'></a><a href='#L111'>111</a>
-<a name='L112'></a><a href='#L112'>112</a>
-<a name='L113'></a><a href='#L113'>113</a>
-<a name='L114'></a><a href='#L114'>114</a>
-<a name='L115'></a><a href='#L115'>115</a>
-<a name='L116'></a><a href='#L116'>116</a>
-<a name='L117'></a><a href='#L117'>117</a>
-<a name='L118'></a><a href='#L118'>118</a>
-<a name='L119'></a><a href='#L119'>119</a>
-<a name='L120'></a><a href='#L120'>120</a>
-<a name='L121'></a><a href='#L121'>121</a>
-<a name='L122'></a><a href='#L122'>122</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L109'></a><a href='#L109'>109</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">215x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">202x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -320,7 +294,7 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
           &lt;AppNavbarLocalhost url={currentUrl} /&gt;
         )
       }
-      &lt;Navbar expand="xl" variant="dark" bg="dark" sticky="top" data-testid="AppNavbar"&gt;
+      &lt;Navbar expand="xl" variant="dark" className="color-nav" sticky="top" data-testid="AppNavbar"&gt;
         &lt;Container &gt;
         &lt;img data-testid="AppNavbarImage" src={headerImg} alt="" style={{width: 80, height: 80, marginRight: 10}} /&gt;
           &lt;Navbar.Brand as={Link} to="/"&gt;
@@ -355,25 +329,15 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
               )
             }
           &lt;/Nav&gt;
-&nbsp;
-            &lt;Nav className="mr-auto"&gt;
-              {
-                hasRole(currentUser, "ROLE_USER") &amp;&amp; (
-                  &lt;NavDropdown title="PSCourse" id="appnavbar-courses-dropdown" data-testid="appnavbar-courses-dropdown" &gt;
-                    &lt;NavDropdown.Item href="/courses/list" data-testid="appnavbar-courses-list"&gt;List&lt;/NavDropdown.Item&gt;
-                    &lt;NavDropdown.Item href="/courses/create" data-testid="appnavbar-courses-create"&gt;Create&lt;/NavDropdown.Item&gt;
-                  &lt;/NavDropdown&gt;
-                )
-              }
-            &lt;/Nav&gt;
-&nbsp;
         
             &lt;Nav className="mr-auto"&gt;
               {
                 hasRole(currentUser, "ROLE_USER") &amp;&amp; (
-                  &lt;NavDropdown title="PersonalSchedules" id="appnavbar-personalschedules-dropdown" data-testid="appnavbar-personalschedules-dropdown" &gt;
-                    &lt;NavDropdown.Item href="/personalschedules/list" data-testid="appnavbar-personalschedules-list"&gt;List&lt;/NavDropdown.Item&gt;
-                    &lt;NavDropdown.Item href="/personalschedules/create" data-testid="appnavbar-personalschedules-create"&gt;Create&lt;/NavDropdown.Item&gt;
+                  &lt;NavDropdown title="Personal Schedules" id="appnavbar-personalschedules-dropdown" data-testid="appnavbar-personalschedules-dropdown" &gt;
+                    &lt;NavDropdown.Item href="/personalschedules/create" data-testid="appnavbar-personalschedules-create"&gt;Create Schedule&lt;/NavDropdown.Item&gt;
+                    &lt;NavDropdown.Item href="/courses/create" data-testid="appnavbar-courses-create"&gt;Add Course&lt;/NavDropdown.Item&gt;
+                    &lt;NavDropdown.Item href="/courses/list" data-testid="appnavbar-courses-list"&gt;All Courses&lt;/NavDropdown.Item&gt;
+                    &lt;NavDropdown.Item href="/personalschedules/list" data-testid="appnavbar-personalschedules-list"&gt;All Schedules&lt;/NavDropdown.Item&gt;
                   &lt;/NavDropdown&gt;
                 )
               }
@@ -386,9 +350,6 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
                 &lt;NavDropdown.Item href="/courseovertime/search" data-testid="appnavbar-course-over-time-search"&gt;Course History&lt;/NavDropdown.Item&gt;
                 &lt;NavDropdown.Item href="/coursedescriptions/search" data-testid="appnavbar-course-descriptions-search"&gt;Course Descriptions&lt;/NavDropdown.Item&gt;
               &lt;/NavDropdown&gt;
-            &lt;/Nav&gt;
-            &lt;Nav className="mr-auto"&gt;
-              &lt;Nav.Link href="/courseinstructor/search"&gt;Search By Instructor&lt;/Nav.Link&gt;
             &lt;/Nav&gt;
 &nbsp;
 &nbsp;
@@ -433,7 +394,7 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri Jun 02 2023 01:02:23 GMT-0700 (Pacific Daylight Time)
+                at Fri Jun 02 2023 12:21:10 GMT-0700 (Pacific Daylight Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>

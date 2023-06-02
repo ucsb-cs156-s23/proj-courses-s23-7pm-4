@@ -74,6 +74,87 @@ public class UCSBCurriculumServiceTests {
     }
 
     @Test
+    public void test_getJSONCourseDescription_success() throws Exception {
+        String expectedResult = "{expectedResult}";
+
+        String subjectArea = "CMPSC";
+        String quarter = "20201";
+        String level = "L";
+        String courseNumber = "16";
+        String courseId = "CMPSC%20%20%20%2016";
+
+        String expectedParams = String.format(
+                "?quarter=%s&subjectCode=%s&objLevelCode=%s&courseId=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s", quarter,
+                subjectArea, level, courseId, 1, 100, "true");
+        String expectedURL = UCSBCurriculumService.CURRICULUM_ENDPOINT + expectedParams;
+
+        this.mockRestServiceServer.expect(requestTo(expectedURL))
+                .andExpect(header("Accept", MediaType.APPLICATION_JSON.toString()))
+                .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
+                .andExpect(header("ucsb-api-version", "1.0"))
+                .andExpect(header("ucsb-api-key", apiKey))
+                .andRespond(withSuccess(expectedResult, MediaType.APPLICATION_JSON));
+
+        String result = ucs.getJSONCourseDescription(subjectArea, quarter, level, courseNumber);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void test_getJSONCourseDescription_success_WithoutSuffix() throws Exception {
+        String expectedResult = "{expectedResult}";
+
+        String subjectArea = "CMPSC";
+        String quarter = "20201";
+        String level = "L";
+        String courseNumber = "24";
+        String courseId = "CMPSC%20%20%20%2024";
+
+        String expectedParams = String.format(
+                "?quarter=%s&subjectCode=%s&objLevelCode=%s&courseId=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s", quarter,
+                subjectArea, level, courseId, 1, 100, "true");
+        String expectedURL = UCSBCurriculumService.CURRICULUM_ENDPOINT + expectedParams;
+
+        this.mockRestServiceServer.expect(requestTo(expectedURL))
+                .andExpect(header("Accept", MediaType.APPLICATION_JSON.toString()))
+                .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
+                .andExpect(header("ucsb-api-version", "1.0"))
+                .andExpect(header("ucsb-api-key", apiKey))
+                .andRespond(withSuccess(expectedResult, MediaType.APPLICATION_JSON));
+
+        String result = ucs.getJSONCourseDescription(subjectArea, quarter, level, courseNumber);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void test_getJSONCourseDescription_success_WithSuffix() throws Exception {
+        String expectedResult = "{expectedResult}";
+
+        String subjectArea = "CMPSC";
+        String quarter = "20201";
+        String level = "L";
+        String courseNumber = "130A";
+        String courseId = "CMPSC%20%20%20130A%20";
+
+        String expectedParams = String.format(
+                "?quarter=%s&subjectCode=%s&objLevelCode=%s&courseId=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s", quarter,
+                subjectArea, level, courseId, 1, 100, "true");
+        String expectedURL = UCSBCurriculumService.CURRICULUM_ENDPOINT + expectedParams;
+
+        this.mockRestServiceServer.expect(requestTo(expectedURL))
+                .andExpect(header("Accept", MediaType.APPLICATION_JSON.toString()))
+                .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
+                .andExpect(header("ucsb-api-version", "1.0"))
+                .andExpect(header("ucsb-api-key", apiKey))
+                .andRespond(withSuccess(expectedResult, MediaType.APPLICATION_JSON));
+
+        String result = ucs.getJSONCourseDescription(subjectArea, quarter, level, courseNumber);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void test_getJSONbyQtrEnrollCd_success() throws Exception {
         String expectedResult = PersonalSectionsFixtures.ONE_COURSE;
 
@@ -122,6 +203,88 @@ public class UCSBCurriculumServiceTests {
     }
 
     @Test
+    public void test_getJSONCourseDescription_success_level_A() throws Exception {
+        String expectedResult = "{expectedResult}";
+
+        String subjectArea = "CMPSC";
+        String quarter = "20201";
+
+        String level = "A";
+        String courseNumber = "16";
+        String courseId = "CMPSC%20%20%20%2016";
+
+        String expectedParams = String.format(
+                "?quarter=%s&subjectCode=%s&courseId=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
+                quarter, subjectArea, courseId, 1, 100, "true");
+        String expectedURL = UCSBCurriculumService.CURRICULUM_ENDPOINT + expectedParams;
+
+        this.mockRestServiceServer.expect(requestTo(expectedURL))
+                .andExpect(header("Accept", MediaType.APPLICATION_JSON.toString()))
+                .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
+                .andExpect(header("ucsb-api-version", "1.0"))
+                .andExpect(header("ucsb-api-key", apiKey))
+                .andRespond(withSuccess(expectedResult, MediaType.APPLICATION_JSON));
+
+        String result = ucs.getJSONCourseDescription(subjectArea, quarter, level, courseNumber);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void test_getJSONCourseDescription_success_level_empty() throws Exception {
+        String expectedResult = "{expectedResult}";
+
+        String subjectArea = "CMPSC";
+        String quarter = "20201";
+
+        String courseLevel = "L";
+        String courseNumber = "";
+
+        String expectedParams = String.format(
+                "?quarter=%s&subjectCode=%s&objLevelCode=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
+                quarter, subjectArea, courseLevel, 1, 100, "true");
+        String expectedURL = UCSBCurriculumService.CURRICULUM_ENDPOINT + expectedParams;
+
+        this.mockRestServiceServer.expect(requestTo(expectedURL))
+                .andExpect(header("Accept", MediaType.APPLICATION_JSON.toString()))
+                .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
+                .andExpect(header("ucsb-api-version", "1.0"))
+                .andExpect(header("ucsb-api-key", apiKey))
+                .andRespond(withSuccess(expectedResult, MediaType.APPLICATION_JSON));
+
+        String result = ucs.getJSONCourseDescription(subjectArea, quarter, courseLevel, courseNumber);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void test_getJSONCourseDescription_success_level_empty_A() throws Exception {
+        String expectedResult = "{expectedResult}";
+
+        String subjectArea = "CMPSC";
+        String quarter = "20201";
+
+        String courseLevel = "A";
+        String courseNumber = "";
+
+        String expectedParams = String.format(
+                "?quarter=%s&subjectCode=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
+                quarter, subjectArea, 1, 100, "true");
+        String expectedURL = UCSBCurriculumService.CURRICULUM_ENDPOINT + expectedParams;
+
+        this.mockRestServiceServer.expect(requestTo(expectedURL))
+                .andExpect(header("Accept", MediaType.APPLICATION_JSON.toString()))
+                .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
+                .andExpect(header("ucsb-api-version", "1.0"))
+                .andExpect(header("ucsb-api-key", apiKey))
+                .andRespond(withSuccess(expectedResult, MediaType.APPLICATION_JSON));
+
+        String result = ucs.getJSONCourseDescription(subjectArea, quarter, courseLevel, courseNumber);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void test_getJSON_exception() throws Exception {
         String expectedResult = "{\"error\": \"401: Unauthorized\"}";
 
@@ -145,6 +308,36 @@ public class UCSBCurriculumServiceTests {
                 .andRespond(withUnauthorizedRequest());
 
         String result = ucs.getJSON(subjectArea, quarter, level);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void test_getJSONCourseDescription_exception() throws Exception {
+        String expectedResult = "{\"error\": \"401: Unauthorized\"}";
+
+        when(restTemplate.exchange(any(String.class), eq(HttpMethod.GET), any(HttpEntity.class), eq(String.class)))
+                .thenThrow(HttpClientErrorException.class);
+
+        String subjectArea = "CMPSC";
+        String quarter = "20201";
+        String level = "L";
+        String courseNumber = "16";
+        String courseId = "CMPSC%20%20%20%2016";
+
+        String expectedParams = String.format(
+                "?quarter=%s&subjectCode=%s&objLevelCode=%s&courseId=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s", quarter,
+                subjectArea, level, courseId, 1, 100, "true");
+        String expectedURL = UCSBCurriculumService.CURRICULUM_ENDPOINT + expectedParams;
+
+        this.mockRestServiceServer.expect(requestTo(expectedURL))
+                .andExpect(header("Accept", MediaType.APPLICATION_JSON.toString()))
+                .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
+                .andExpect(header("ucsb-api-version", "1.0"))
+                .andExpect(header("ucsb-api-key", apiKey))
+                .andRespond(withUnauthorizedRequest());
+
+        String result = ucs.getJSONCourseDescription(subjectArea, quarter, level, courseNumber);
 
         assertEquals(expectedResult, result);
     }

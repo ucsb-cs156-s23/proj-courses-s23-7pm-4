@@ -15,7 +15,7 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
       }
       <Navbar expand="xl" variant="dark" className="color-nav" sticky="top" data-testid="AppNavbar">
         <Container >
-        <img data-testid="AppNavbarImage" src={headerImg} alt="" style={{width: 80, height: 80, marginLeft: 5, marginRight: 10}} />
+        <img data-testid="AppNavbarImage" src={headerImg} alt="" style={{width: 80, height: 80, marginRight: 10}} />
           <Navbar.Brand as={Link} to="/">
             UCSB Courses Search
           </Navbar.Brand>

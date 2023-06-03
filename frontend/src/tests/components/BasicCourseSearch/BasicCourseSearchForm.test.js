@@ -110,7 +110,7 @@ describe("BasicCourseSearchForm tests", () => {
         </MemoryRouter>
       </QueryClientProvider>
     );
-    const selectCourseNumber = screen.getByLabelText("Course Number (Try searching '16' or '130A')");
+    const selectCourseNumber = screen.getByLabelText("Course Number (Try searching '16' or '130A', or leave blank to view all courses)");
     userEvent.type(selectCourseNumber, "24");
     expect(selectCourseNumber.value).toBe("24");
   });
@@ -123,7 +123,7 @@ describe("BasicCourseSearchForm tests", () => {
         </MemoryRouter>
       </QueryClientProvider>
     );
-    const selectCourseNumber = screen.getByLabelText("Course Number (Try searching '16' or '130A')");
+    const selectCourseNumber = screen.getByLabelText("Course Number (Try searching '16' or '130A', or leave blank to view all courses)");
     userEvent.type(selectCourseNumber, "130A");
     expect(selectCourseNumber.value).toBe("130A");
   });
@@ -136,7 +136,7 @@ describe("BasicCourseSearchForm tests", () => {
         </MemoryRouter>
       </QueryClientProvider>
     );
-    const selectCourseNumber = screen.getByLabelText("Course Number (Try searching '16' or '130A')");
+    const selectCourseNumber = screen.getByLabelText("Course Number (Try searching '16' or '130A', or leave blank to view all courses)");
     userEvent.type(selectCourseNumber, "A");
     expect(selectCourseNumber.value).toBe("A");
   });
@@ -177,7 +177,7 @@ describe("BasicCourseSearchForm tests", () => {
     userEvent.selectOptions(selectSubject, "ANTH");
     const selectLevel = screen.getByLabelText("Course Level");
     userEvent.selectOptions(selectLevel, "G");
-    const selectCourseNum = screen.getByLabelText("Course Number (Try searching '16' or '130A')");
+    const selectCourseNum = screen.getByLabelText("Course Number (Try searching '16' or '130A', or leave blank to view all courses)");
     userEvent.type(selectCourseNum, "5");
     const submitButton = screen.getByText("Submit");
     userEvent.click(submitButton);
@@ -219,7 +219,7 @@ describe("BasicCourseSearchForm tests", () => {
     userEvent.selectOptions(selectSubject, "MATH");
     const selectLevel = screen.getByLabelText("Course Level");
     userEvent.selectOptions(selectLevel, "G");
-    const selectCourseNum = screen.getByLabelText("Course Number (Try searching '16' or '130A')");
+    const selectCourseNum = screen.getByLabelText("Course Number (Try searching '16' or '130A', or leave blank to view all courses)");
     userEvent.type(selectCourseNum, "");
     const submitButton = screen.getByText("Submit");
     userEvent.click(submitButton);

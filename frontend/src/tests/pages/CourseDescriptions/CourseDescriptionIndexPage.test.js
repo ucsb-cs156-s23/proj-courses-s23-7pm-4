@@ -81,7 +81,7 @@ describe("CourseDescriptionIndexPage tests", () => {
     const selectLevel = screen.getByLabelText("Course Level");
     userEvent.selectOptions(selectLevel, "G");
 
-    const selectCourseNum = screen.getByLabelText("Course Number (Try searching '16' or '130A')");
+    const selectCourseNum = screen.getByLabelText("Course Number (Try searching '16' or '130A', or leave blank to view all courses)");
     userEvent.type(selectCourseNum, "5");
 
     const submitButton = screen.getByText("Submit");

@@ -94,7 +94,7 @@ const BasicCourseSearchForm = ({ fetchJSON }) => {
           </Col>
         </Row>
         <Form.Group controlId="BasicSearch.CourseNumber">
-            <Form.Label>Course Number (Try searching '16' or '130A')</Form.Label>
+            <Form.Label>Course Number (Try searching '16' or '130A', or leave blank to view all courses)</Form.Label>
             <Form.Control onChange={handleCourseNumberOnChange} defaultValue={courseNumber} />
         </Form.Group>
         <Row style={{ paddingTop: 10, paddingBottom: 10 }}>

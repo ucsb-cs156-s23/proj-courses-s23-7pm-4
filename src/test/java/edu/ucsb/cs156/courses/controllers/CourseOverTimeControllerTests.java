@@ -47,9 +47,9 @@ public class CourseOverTimeControllerTests {
     @Test
     public void test_search_emptyRequest() throws Exception {
         List<ConvertedSection> expectedResult = new ArrayList<ConvertedSection>();
-        String urlTemplate = "/api/public/courseovertime/search?startQtr=%s&endQtr=%s&subjectArea=%s&courseNumber=%s";
+        String urlTemplate = "/api/public/courseovertime/search?startQtr=%s&endQtr=%s&subjectArea=%s&courseNumber=%s&location=%s";
         
-        String url = String.format(urlTemplate, "20222", "20212", "CMPSC", "130A");
+        String url = String.format(urlTemplate, "20222", "20212", "CMPSC", "130A", "EMBAR HALL");
 
         // mock
         when(convertedSectionCollection.findByQuarterRangeAndCourseId(any(String.class), any(String.class), any(String.class)))
@@ -92,9 +92,9 @@ public class CourseOverTimeControllerTests {
             .section(section2)
             .build();
 
-        String urlTemplate = "/api/public/courseovertime/search?startQtr=%s&endQtr=%s&subjectArea=%s&courseNumber=%s";
+            String urlTemplate = "/api/public/courseovertime/search?startQtr=%s&endQtr=%s&subjectArea=%s&courseNumber=%s&location=%s";
     
-        String url = String.format(urlTemplate, "20222", "20222", "CMPSC", "24");
+        String url = String.format(urlTemplate, "20222", "20222", "CMPSC", "24", "EMBAR HALL");
 
         List<ConvertedSection> expectedSecs = new ArrayList<ConvertedSection>();
         expectedSecs.addAll(Arrays.asList(cs1, cs2));
@@ -133,9 +133,9 @@ public class CourseOverTimeControllerTests {
             .section(section2)
             .build();
 
-        String urlTemplate = "/api/public/courseovertime/search?startQtr=%s&endQtr=%s&subjectArea=%s&courseNumber=%s";
+            String urlTemplate = "/api/public/courseovertime/search?startQtr=%s&endQtr=%s&subjectArea=%s&courseNumber=%s&location=%s";
     
-        String url = String.format(urlTemplate, "20222", "20222", "CMPSC", "130A");
+        String url = String.format(urlTemplate, "20222", "20222", "CMPSC", "130A", "EMBAR HALL");
 
         List<ConvertedSection> expectedSecs = new ArrayList<ConvertedSection>();
         expectedSecs.addAll(Arrays.asList(cs1, cs2));

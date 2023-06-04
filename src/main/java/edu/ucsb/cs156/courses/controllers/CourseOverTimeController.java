@@ -35,7 +35,8 @@ public class CourseOverTimeController {
         @RequestParam String startQtr,
         @RequestParam String endQtr,
         @RequestParam String subjectArea,
-        @RequestParam String courseNumber
+        @RequestParam String courseNumber,
+        @RequestParam String location
     ) throws JsonProcessingException {
         List<ConvertedSection> courseResults = convertedSectionCollection.findByQuarterRangeAndCourseId(
             startQtr,
@@ -61,5 +62,4 @@ public class CourseOverTimeController {
             + String.format( "%-2s", suffs[1]                   ) // 'A '
         ;
     }
-    
 }

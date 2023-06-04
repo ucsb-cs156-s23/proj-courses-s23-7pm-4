@@ -63,7 +63,6 @@ const BasicCourseSearchForm = ({ fetchJSON }) => {
     }
   };
 
-  // Stryker disable all : Stryker is testing by changing the padding to 0. But this is simply a visual optimization as it makes it look better
   return (
     <Form onSubmit={handleSubmit}>
       <Container>

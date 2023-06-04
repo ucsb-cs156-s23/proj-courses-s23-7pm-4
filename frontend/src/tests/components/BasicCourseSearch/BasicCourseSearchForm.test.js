@@ -56,6 +56,20 @@ describe("BasicCourseSearchForm tests", () => {
     );
   });
 
+  test("expected CSS property of submit button", () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <BasicCourseSearchForm />
+        </MemoryRouter>
+      </QueryClientProvider>
+    );
+    const submitButton = screen.getByText("Submit");
+    expect(submitButton).toBeInTheDocument();
+    expect(submitButton).toHaveAttribute("style", "paddingTop: 10, paddingBottom: 10");
+
+  });
+
   test("when I select a quarter, the state for quarter changes", () => {
     render(
       <QueryClientProvider client={queryClient}>

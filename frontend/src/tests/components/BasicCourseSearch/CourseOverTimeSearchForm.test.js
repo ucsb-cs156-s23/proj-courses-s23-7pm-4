@@ -56,6 +56,20 @@ describe("CourseOverTimeSearchForm tests", () => {
     );
   });
 
+  test("expected CSS property of submit button", () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <CourseOverTimeSearchForm />
+        </MemoryRouter>
+      </QueryClientProvider>
+    );
+    const submitButton = screen.getByText("Submit");
+    expect(submitButton).toBeInTheDocument();
+    expect(submitButton).toHaveAttribute("style", "paddingTop: 10, paddingBottom: 10");
+
+  });
+
   test("when I select a start quarter, the state for start quarter changes", () => {
     render(
       <QueryClientProvider client={queryClient}>

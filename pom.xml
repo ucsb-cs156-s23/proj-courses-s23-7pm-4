@@ -137,6 +137,13 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
+            <!-- Inject git info into spring-->
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>2.2.1</version>
+            </plugin>
+
             <!-- Test case coverage report -->
             <plugin>
                 <groupId>org.jacoco</groupId>

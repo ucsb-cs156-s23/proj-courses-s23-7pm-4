@@ -1,5 +1,3 @@
-import { isSection } from "./sectionUtils";
-
 const quarters = [
     "WINTER",
     "SPRING",

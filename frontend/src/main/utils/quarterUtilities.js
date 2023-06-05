@@ -25,20 +25,6 @@ const yyyyqToQyy = (yyyyq) => {
     return `${shortQuarters[parseInt(yyyyq.charAt(4)) - 1]}${yyyyq.substring(2, 4)}`;
 }
 
-export const yyyyqToQyy2 = (yyyyq, rowObj) => {
-    if (isSection(rowObj)){
-        return '   ';
-    }
-    else {
-        return `${shortQuarters[parseInt(yyyyq.charAt(4)) - 1]}${yyyyq.substring(2, 4)}`;
-    }
-}
-
-export const quarterFilter = (valueObj) => {
-    valueObj = "  ";
-    return valueObj;
-}
-
 const toFormat = (quarter, year) => {
     return year.toString() + (parseInt(quarter)).toString();
 }

@@ -14,22 +14,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Document(collection = "updates")
 public class Update {
-    private ObjectId subject_area; // need to define/change class type
-    private CourseInfo quarter_yyyyq; // need to define/change class type
-    private Section last_update; // need to define/change class type
+    private String subject_area;
+    private String quarter_yyyyq;
+    private String last_update;
 
     @Override
     public Object clone() throws CloneNotSupportedException {
 
         Update newUpdate = new Update();
-        
-        newUpdate.set_id(this._id);
 
-        CourseInfo newCourseInfo = (CourseInfo) this.getCourseInfo().clone();
-        newUpdate.setCourseInfo(newCourseInfo);
+        String newSubjectArea = (String) this.getSubject_area().clone();
+        newUpdate.setSubject_area(newSubjectArea);
 
-        Section newSection = (Section) this.getSection().clone();
-        newUpdate.setSection(newSection);
+        String newQuarter = (String) this.getQuarter_yyyyq().clone();
+        newUpdate.setQuarter_yyyyq(newQuarter);
+
+        String newLastUpdate = (String) this.getLast_update().clone();
+        newUpdate.setLast_update(newLastUpdate);
 
         return newUpdate;
     }

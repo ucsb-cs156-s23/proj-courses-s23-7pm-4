@@ -1,6 +1,6 @@
 import SectionsOverTimeTableBase from "main/components/SectionsOverTimeTableBase";
 
-import { yyyyqToQyy } from "main/utils/quarterUtilities.js";
+import { yyyyqToQyy2 } from "main/utils/quarterUtilities.js";
 import { convertToFraction, formatDays, formatInstructors, formatLocation, formatTime, isSection } from "main/utils/sectionUtils.js";
 
 
@@ -20,9 +20,11 @@ export default function SectionsOverTimeTable({ sections }) {
     const columns = [
         {
             Header: 'Quarter',
-            accessor: (row) => yyyyqToQyy(row.courseInfo.quarter),
+            accessor: (row) => yyyyqToQyy2(row.courseInfo.quarter, row.section.section),
+            // accessor: (row) => yyyyqToQyy(row.courseInfo.quarter),
             disableGroupBy: true,
             id: 'quarter',
+            // filter: (row) => isSection(row.section.section),
 
             Cell: ({ cell: { value } }) => value
 

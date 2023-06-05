@@ -3,6 +3,8 @@ package edu.ucsb.cs156.courses.documents;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.ZonedDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,5 +19,5 @@ public class Update {
     private ObjectId _id;
     private String subject_area;
     private String quarter_yyyyq;
-    private String last_update;
+    private ZonedDateTime last_update;
 }

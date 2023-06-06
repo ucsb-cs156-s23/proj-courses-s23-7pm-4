@@ -82,6 +82,18 @@ describe("CourseInstructorSearchForm tests", () => {
     expect(selectEndQuarter.value).toBe("20204");
   });
 
+  test("Correct style for submit button when rendered", () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <CourseInstructorSearchForm />
+        </MemoryRouter>
+      </QueryClientProvider>
+    );
+    const submitButton = screen.getByTestId("submit-button");
+    expect(submitButton).toBeInTheDocument();
+    expect(submitButton).toHaveStyle({ paddingTop: "15px", paddingBottom: "15px" });
+  });
 
   test("when I select the instructor, the state for the instructor changes", () => {
     render(

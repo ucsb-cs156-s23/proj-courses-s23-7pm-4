@@ -39,7 +39,7 @@ export default function CourseInstructorIndexPage() {
       <div className="pt-2">
         <h5>Welcome to the UCSB Course Instructor Search!</h5>
         <CourseInstructorSearchForm fetchJSON={fetchCourseInstructorJSON} />
-        {/* Need to still implement search feature */}
+          Need to still implement search feature
         <BasicCourseTable courses={courseJSON} />
       </div>
     </BasicLayout>

@@ -12,7 +12,7 @@ const CourseInstructorSearchForm = ({ fetchJSON }) => {
   // Stryker disable OptionalChaining
   const startQtr = systemInfo?.startQtrYYYYQ || "20211";
   const endQtr = systemInfo?.endQtrYYYYQ || "20214";
-  // Stryker enable OptionalChaining
+  // Stryker restore OptionalChaining
 
   const quarters = quarterRange(startQtr, endQtr);
 
@@ -20,10 +20,10 @@ const CourseInstructorSearchForm = ({ fetchJSON }) => {
   const localStartQuarter = localStorage.getItem("CourseInstructorSearch.StartQuarter");
   const localEndQuarter = localStorage.getItem("CourseInstructorSearch.EndQuarter");
   const localInstructor = localStorage.getItem("CourseInstructorSearch.instructor");
-
+  //Styker restore all
   const {error: _error, status: _status } =
   useBackend(
-    // Stryker disable next-line all : don't test internal caching of React Query
+  // Stryker disable next-line all : don't test internal caching of React Query
     ["/api/UCSBSubjects/all"], 
     { method: "GET", url: "/api/UCSBSubjects/all" }, 
     []
@@ -39,7 +39,6 @@ const CourseInstructorSearchForm = ({ fetchJSON }) => {
   };
 
 
-  // Stryker disable all : Stryker is testing by changing the padding to 0. But this is simply a visual optimization as it makes it look better
   return (
     <Form onSubmit={handleSubmit}>
       <Container>
@@ -67,7 +66,8 @@ const CourseInstructorSearchForm = ({ fetchJSON }) => {
             <Form.Label>Instructor Name (Try searching 'Conrad' or 'Mirza')</Form.Label>
             <Form.Control onChange={setInstructor} defaultValue={instructor} />
         </Form.Group>
-        <Row style={{ paddingTop: 10, paddingBottom: 10 }}>
+        <Row style={{ paddingTop: 15, paddingBottom: 15 }}
+          data-testid="submit-button">
           <Col md="auto">
             <Button variant="primary" type="submit">
               Submit

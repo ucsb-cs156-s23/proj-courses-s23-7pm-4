@@ -64,10 +64,8 @@ describe("CourseSearchWithCourseNumberForm tests", () => {
         </MemoryRouter>
       </QueryClientProvider>
     );
-    const submitButton = screen.getByText("Submit");
-    expect(submitButton).toBeInTheDocument();
-    expect(submitButton).toHaveAttribute("style", "paddingTop: 10, paddingBottom: 10");
 
+    expect(screen.getByTestId('submitRow')).toHaveStyle("paddingTop: 10, paddingBottom: 10");
   });
 
   test("when I select a quarter, the state for quarter changes", () => {

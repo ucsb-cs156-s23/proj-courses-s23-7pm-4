@@ -103,7 +103,7 @@ const CourseOverTimeSearchForm = ({ fetchJSON }) => {
         </Form.Group>
         <Row style={{ paddingTop: 10, paddingBottom: 10 }}>
           <Col md="auto">
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" >
               Submit
             </Button>
           </Col>

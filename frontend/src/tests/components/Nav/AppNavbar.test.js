@@ -216,4 +216,19 @@ describe("AppNavbar tests", () => {
 
         expect(await screen.findByTestId("appnavbar-course-over-time-search")).toBeInTheDocument();
     });
+    test("renders Search course instructor correctly", async () => {
+        const currentUser = currentUserFixtures.adminUser;
+        const systemInfo = systemInfoFixtures.showingBoth;
+
+        const doLogin = jest.fn();
+
+        render(
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter>
+                    <AppNavbar currentUser={currentUser} systemInfo={systemInfo} doLogin={doLogin} />
+                </MemoryRouter>
+            </QueryClientProvider>
+        );
+        expect(screen.getByText("Search By Instructor")).toBeInTheDocument();        
+    });
 });

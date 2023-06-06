@@ -53,8 +53,9 @@ export default function SectionsTableBase({ columns, data, testid = "testid"}) {
                     ) 
                     : cell.isAggregated ? (
                       cell.render("Aggregated")
+                    ) : cell.isPlaceholder ? null : (
+                    cell.render('Cell')
                     )
-                    : cell.render('Cell')
                     }
                     <>
                     

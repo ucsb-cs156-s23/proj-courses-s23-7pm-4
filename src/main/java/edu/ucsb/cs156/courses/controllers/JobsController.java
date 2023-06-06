@@ -7,7 +7,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Import;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +29,8 @@ import edu.ucsb.cs156.courses.jobs.UpdateCourseDataRangeOfQuartersJobFactory;
 
 import edu.ucsb.cs156.courses.jobs.UpdateCourseDataWithQuarterJob;
 import edu.ucsb.cs156.courses.jobs.UpdateCourseDataWithQuarterJobFactory;
+import edu.ucsb.cs156.courses.jobs.UploadGradeDataJob;
+import edu.ucsb.cs156.courses.jobs.UploadGradeDataJobFactory;
 import edu.ucsb.cs156.courses.jobs.TestJob;
 import edu.ucsb.cs156.courses.repositories.JobsRepository;
 import edu.ucsb.cs156.courses.services.jobs.JobService;
@@ -62,6 +63,9 @@ public class JobsController extends ApiController {
 
     @Autowired
     UpdateCourseDataRangeOfQuartersSingleSubjectJobFactory updateCourseDataRangeOfQuartersSingleSubjectJobFactory;
+
+    @Autowired
+    UploadGradeDataJobFactory updateGradeDataJobFactory;
 
     @ApiOperation(value = "List all jobs")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -145,5 +149,12 @@ public class JobsController extends ApiController {
         return jobService.runAsJob(updateCourseDataRangeOfQuartersSingleSubjectJob);
     }
 
+    @ApiOperation(value = "Launch Job to update grade data")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PostMapping("/launch/uploadGradeData")
+    public Job launchUploadGradeData() {
+        UploadGradeDataJob updateGradeDataJob = updateGradeDataJobFactory.create();
+        return jobService.runAsJob(updateGradeDataJob);
+    }
 
 }

@@ -53,8 +53,9 @@ export default function SectionsOverTimeTableBase({ columns, data, testid = "tes
                     ) 
                     : cell.isAggregated ? (
                       cell.render("Aggregated")
+                    ): cell.isPlaceholder ? null : (
+                     cell.render('Cell')
                     )
-                    : cell.render('Cell')
                     }
                     <>
                     

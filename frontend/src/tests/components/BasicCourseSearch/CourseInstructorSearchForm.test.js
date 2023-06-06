@@ -92,7 +92,7 @@ describe("CourseInstructorSearchForm tests", () => {
     );
     const submitButton = screen.getByTestId("submit-button");
     expect(submitButton).toBeInTheDocument();
-    expect(submitButton).toHaveStyle({ paddingTop: "15px", paddingBottom: "15px" });
+    expect(submitButton).toHaveStyle({ paddingTop: "10px", paddingBottom: "10px" });
   });
 
   test("when I select the instructor, the state for the instructor changes", () => {

@@ -66,7 +66,7 @@ const CourseInstructorSearchForm = ({ fetchJSON }) => {
             <Form.Label>Instructor Name (Try searching 'Conrad' or 'Mirza')</Form.Label>
             <Form.Control onChange={setInstructor} defaultValue={instructor} />
         </Form.Group>
-        <Row style={{ paddingTop: 15, paddingBottom: 15 }}
+        <Row style={{ paddingTop: 10, paddingBottom: 10 }}
           data-testid="submit-button">
           <Col md="auto">
             <Button variant="primary" type="submit">

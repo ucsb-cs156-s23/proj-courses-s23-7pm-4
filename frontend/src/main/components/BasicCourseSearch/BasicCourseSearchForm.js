@@ -35,7 +35,7 @@ const BasicCourseSearchForm = ({ fetchJSON }) => {
   );
 
   const [quarter, setQuarter] = useState(localQuarter || quarters[0].yyyyq);
-  const [subject, setSubject] = useState(localSubject || {});
+  const [subject, setSubject] = useState(localSubject || "ANTH");
   const [level, setLevel] = useState(localLevel || "U");
 
   const handleSubmit = (event) => {

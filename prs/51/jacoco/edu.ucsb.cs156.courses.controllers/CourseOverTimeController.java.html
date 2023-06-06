@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CourseOverTimeController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">courses</a> &gt; <a href="index.source.html" class="el_package">edu.ucsb.cs156.courses.controllers</a> &gt; <span class="el_source">CourseOverTimeController.java</span></div><h1>CourseOverTimeController.java</h1><pre class="source lang-java linenums">package edu.ucsb.cs156.courses.controllers;
+
+import java.util.List;
+
+import edu.ucsb.cs156.courses.collections.ConvertedSectionCollection;
+import edu.ucsb.cs156.courses.documents.ConvertedSection;
+import edu.ucsb.cs156.courses.utilities.CourseUtilities;
+import io.swagger.annotations.ApiOperation;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@RestController
+@RequestMapping(&quot;/api/public/courseovertime&quot;)
+<span class="fc" id="L24">public class CourseOverTimeController {</span>
+
+<span class="fc" id="L26">    private final Logger logger = LoggerFactory.getLogger(CourseOverTimeController.class);</span>
+
+<span class="fc" id="L28">    private ObjectMapper mapper = new ObjectMapper();</span>
+
+    @Autowired
+    ConvertedSectionCollection convertedSectionCollection;
+
+    @ApiOperation(value = &quot;Get a list of courses over time&quot;)
+    @GetMapping(value = &quot;/search&quot;, produces = &quot;application/json&quot;)
+    public ResponseEntity&lt;String&gt; search(
+        @RequestParam String startQtr,
+        @RequestParam String endQtr,
+        @RequestParam String subjectArea,
+        @RequestParam String courseNumber
+    ) throws JsonProcessingException {
+<span class="fc" id="L41">        List&lt;ConvertedSection&gt; courseResults = convertedSectionCollection.findByQuarterRangeAndCourseId(</span>
+            startQtr,
+            endQtr,
+<span class="fc" id="L44">            CourseUtilities.makeFormattedCourseId(subjectArea, courseNumber)</span>
+        );
+<span class="fc" id="L46">        String body = mapper.writeValueAsString(courseResults);</span>
+<span class="fc" id="L47">        return ResponseEntity.ok().body(body);</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -37,7 +37,7 @@ const CourseOverTimeSearchForm = ({ fetchJSON }) => {
 
   const [startQuarter, setStartQuarter] = useState(localStartQuarter || quarters[0].yyyyq);
   const [endQuarter, setEndQuarter] = useState(localEndQuarter || quarters[0].yyyyq);
-  const [subject, setSubject] = useState(localSubject || {});
+  const [subject, setSubject] = useState(localSubject || "ANTH");
   const [courseNumber, setCourseNumber] = useState(localCourseNumber || "");
   const [courseSuf, setCourseSuf] = useState("");
     
